@@ -1,0 +1,17 @@
+[Unit]
+Description=A Node.js web application
+After=network.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=exec
+User=myapp
+WorkingDirectory=/opt/myapp
+ExecStart=/usr/bin/node /opt/myapp/server.js
+KillSignal=SIGTERM
+Restart=on-abort
+RestartSec=5s
+StandardOutput=journal
+StandardError=journal

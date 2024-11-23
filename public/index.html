@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8" />
+<title>Counter</title>
+<meta name="referrer" content="no-referrer" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<p>Counter: <span id="value">???</span></p>
+
+<button type="button" class="counter-action" data-n="-1">Down</button>
+<button type="button" class="counter-action" data-n="1">Up</button>
+
+<script>
+    async function update() {
+        const response = await fetch("/num");
+        if (response.ok) {
+            const data = await response.json();
+            document.getElementById("value").textContent = data.counter;
+        }
+    }
+
+    update();
+    
+    document.querySelectorAll(".counter-action").forEach((button) => {
+        button.addEventListener("click", async (e) => {
+            await fetch(`/num?n=${encodeURIComponent(button.dataset.n)}`, {
+                method: "POST",
+            });
+            update();
+        });
+    });
+</script>
