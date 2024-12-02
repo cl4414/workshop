@@ -1,5 +1,9 @@
 # Setup Commands
 
+## Important resources
+1. NameCheap (Domain): https://nc.me
+2. DigitalOcean (VM creation): https://www.digitalocean.com
+
 ## Install the Web Server, Database, and Tools
 ```bash
 apt install nginx mariadb-server python3-certbot-nginx curl git
